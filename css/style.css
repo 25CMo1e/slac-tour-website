@@ -131,3 +131,27 @@ footer a:hover {
     height: 3px;
     background-color: var(--primary-color);
 }
+
+.sub-floor-buttons,
+.sub-floor-buttons-second,
+.sub-floor-buttons-third,
+.sub-floor-buttons-fourth,
+.sub-floor-buttons-sixth {
+    margin-left: 20px;
+    border-left: 2px solid #007bff;
+}
+
+.sub-floor {
+    font-size: 0.9em;
+    padding: 0.5rem 1rem;
+    background-color: #f8f9fa;
+}
+
+.sub-floor:hover {
+    background-color: #e9ecef;
+}
+
+.sub-floor.active {
+    background-color: #007bff;
+    color: white;
+}
