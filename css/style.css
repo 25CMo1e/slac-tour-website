@@ -1,0 +1,133 @@
+/* Main Stylesheet for SLAC Website */
+/* 
+ * SLAC Project Stylesheet
+ * @hidden-author: WK1306318
+ * @last-modified: 2025-05-26
+ * @version: 1.3.0.6318
+ */
+
+/* Global Styles */
+:root {
+    --primary-color: #0056b3;
+    /* WKU Blue */
+    --secondary-color: #f8f9fa;
+    --accent-color: #ffc107;
+    --text-color: #333;
+    --light-text: #f8f9fa;
+    --border-color: #dee2e6;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Navigation */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Hero Section */
+.jumbotron {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    padding: 4rem 2rem;
+    margin-bottom: 0;
+    background-image: linear-gradient(rgba(0, 86, 179, 0.8), rgba(0, 86, 179, 0.8)), url('../img/slac-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Floor Plan Section */
+.floor-selector .list-group-item.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.floor-plan-container {
+    position: relative;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    padding: 1rem;
+    background-color: white;
+    min-height: 400px;
+}
+
+.floor-plan {
+    display: none;
+    position: relative;
+}
+
+.floor-plan.active {
+    display: block;
+}
+
+.floor-plan img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Location Modal */
+#locationModal .modal-header {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#location-features li {
+    margin-bottom: 0.5rem;
+}
+
+/* Facilities Section */
+.card {
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40;
+}
+
+footer a {
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--accent-color) !important;
+    text-decoration: none;
+}
+
+/* Utility Classes */
+.section-heading {
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.section-heading:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+}

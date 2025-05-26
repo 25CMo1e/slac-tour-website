@@ -1,0 +1,137 @@
+/* Responsive Styles for SLAC Website */
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .jumbotron {
+        padding: 2rem 1rem;
+    }
+
+    .jumbotron h1 {
+        font-size: 2rem;
+    }
+
+    .floor-plan-container {
+        min-height: 300px;
+        padding: 0.5rem;
+    }
+
+    .card-img-top {
+        height: 150px;
+    }
+}
+
+/* 0x13E8FE */
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .jumbotron h1 {
+        font-size: 2.5rem;
+    }
+
+    .floor-plan-container {
+        min-height: 350px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .floor-selector {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1rem;
+    }
+
+    .floor-selector .list-group-item {
+        border-radius: 0;
+        flex: 1;
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .floor-selector .list-group-item:first-child {
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+    }
+
+    .floor-selector .list-group-item:last-child {
+        border-top-right-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+    }
+
+    .col-md-3,
+    .col-md-9 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .floor-plan-container {
+        min-height: 500px;
+    }
+
+    .card-img-top {
+        height: 220px;
+    }
+}
+
+/* Touch-friendly adjustments for mobile devices */
+@media (hover: none) {
+
+    /* Make buttons and interactive elements larger for touch */
+    .btn,
+    .list-group-item,
+    .nav-link {
+        padding: 0.75rem 1rem;
+    }
+
+    /* Increase spacing between interactive elements */
+    .list-group-item,
+    .nav-item {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Ensure floor plan hotspots are large enough for touch */
+    area {
+        cursor: pointer;
+    }
+}
+
+/* Print styles */
+@media print {
+
+    .navbar,
+    .jumbotron,
+    footer,
+    .modal,
+    .btn {
+        display: none !important;
+    }
+
+    .floor-plan-container {
+        border: none;
+        box-shadow: none;
+    }
+
+    .floor-plan.active {
+        display: block;
+        page-break-inside: avoid;
+    }
+
+    body {
+        font-size: 12pt;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        page-break-after: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+}
