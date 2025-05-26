@@ -1,13 +1,15 @@
 <?php
 session_start();
+require_once __DIR__ . '/php/lang/Language.php';
+$lang = Language::getInstance();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $lang->getCurrentLang(); ?>">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLAC - Student Learning & Activity Center</title>
+    <title><?php echo $lang->get('welcome_title'); ?> - <?php echo $lang->get('welcome_subtitle'); ?></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -24,27 +26,28 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="index.php"><?php echo $lang->get('nav_home'); ?> <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link" href="#about"><?php echo $lang->get('nav_about'); ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#facilities">Facilities</a>
+                        <a class="nav-link" href="#facilities"><?php echo $lang->get('nav_facilities'); ?></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="contact.html"><?php echo $lang->get('nav_contact'); ?></a>
                     </li>
+                    <?php include __DIR__ . '/php/components/language_selector.php'; ?>
                     <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) : ?>
                         <li class="nav-item">
                             <span class="navbar-text text-white mr-2">Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?></span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light btn-sm" href="php/auth/logout.php">Logout</a>
+                            <a class="nav-link btn btn-outline-light btn-sm" href="php/auth/logout.php"><?php echo $lang->get('nav_logout'); ?></a>
                         </li>
                     <?php else : ?>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light btn-sm ml-2" href="php/auth/login.php">Login</a>
+                            <a class="nav-link btn btn-outline-light btn-sm ml-2" href="php/auth/login.php"><?php echo $lang->get('nav_login'); ?></a>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -57,9 +60,9 @@ session_start();
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <h1>Welcome to SLAC</h1>
-                    <p class="lead">Your hub for learning and activities at Wenzhou-Kean University.</p>
-                    <a href="#about" class="btn btn-primary btn-lg">Learn More</a>
+                    <h1><?php echo $lang->get('welcome_title'); ?></h1>
+                    <p class="lead"><?php echo $lang->get('welcome_subtitle'); ?></p>
+                    <a href="#about" class="btn btn-primary btn-lg"><?php echo $lang->get('learn_more'); ?></a>
                 </div>
                 <div class="col-md-6">
                     <!-- Optional: Add an image or illustration here -->
@@ -73,8 +76,8 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="col-md-8 offset-md-2 text-center">
-                    <h2>About SLAC</h2>
-                    <p>The Student Learning and Activity Center (SLAC) is a state-of-the-art facility designed to support the academic and extracurricular lives of Wenzhou-Kean University students. With modern classrooms, study areas, and recreational spaces, SLAC is the perfect place to learn, collaborate, and unwind.</p>
+                    <h2><?php echo $lang->get('about_title'); ?></h2>
+                    <p><?php echo $lang->get('about_description'); ?></p>
                 </div>
             </div>
         </div>
@@ -83,7 +86,7 @@ session_start();
     <!-- Facilities Section -->
     <section id="facilities" class="py-5 bg-light">
         <div class="container">
-            <h2 class="text-center mb-4">Our Facilities</h2>
+            <h2 class="text-center mb-4"><?php echo $lang->get('facilities_title'); ?></h2>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
@@ -98,8 +101,8 @@ session_start();
                     <div class="card mb-4 shadow-sm">
                         <img src="#" class="card-img-top" alt="Classrooms">
                         <div class="card-body">
-                            <h5 class="card-title">Modern Classrooms</h5>
-                            <p class="card-text">Equipped with the latest technology for effective learning.</p>
+                            <h5 class="card-title"><?php echo $lang->get('facilities_classrooms_title'); ?></h5>
+                            <p class="card-text"><?php echo $lang->get('facilities_classrooms_desc'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -107,14 +110,14 @@ session_start();
                     <div class="card mb-4 shadow-sm">
                         <img src="#" class="card-img-top" alt="Activity Spaces">
                         <div class="card-body">
-                            <h5 class="card-title">Activity Spaces</h5>
-                            <p class="card-text">Versatile areas for clubs, events, and recreational activities.</p>
+                            <h5 class="card-title"><?php echo $lang->get('facilities_spaces_title'); ?></h5>
+                            <p class="card-text"><?php echo $lang->get('facilities_spaces_desc'); ?></p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="text-center mt-4">
-                <a href="#floor-plans" class="btn btn-outline-primary">View Floor Plans</a>
+                <a href="#floor-plans" class="btn btn-outline-primary"><?php echo $lang->get('view_floor_plans_button'); ?></a>
             </div>
         </div>
     </section>
@@ -122,7 +125,7 @@ session_start();
     <!-- Floor Plans Section -->
     <section id="floor-plans" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-4">Floor Plans</h2>
+            <h2 class="text-center mb-4"><?php echo $lang->get('floor_plans_title'); ?></h2>
             <div class="row">
                 <div class="col-md-12">
                     <img src="#" class="img-fluid" alt="Floor Plans">
@@ -137,9 +140,9 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="col-md-8 offset-md-2 text-center">
-                    <h2>Get in Touch</h2>
-                    <p>Have questions or want to book a space? Contact us!</p>
-                    <a href="contact.html" class="btn btn-primary btn-lg">Contact Us</a>
+                    <h2><?php echo $lang->get('contact_title'); ?></h2>
+                    <p><?php echo $lang->get('contact_description'); ?></p>
+                    <a href="contact.php" class="btn btn-primary btn-lg"><?php echo $lang->get('contact_button'); ?></a>
                 </div>
             </div>
         </div>
@@ -151,30 +154,30 @@ session_start();
             <div class="row">
                 <div class="col-md-6">
                     <h5>Student Learning & Activity Center</h5>
-                    <p>Wenzhou-Kean University<br>88 Daxue Road, Ouhai<br>Wenzhou, Zhejiang, China</p>
+                    <p><?php echo $lang->get('footer_address'); ?></p>
                 </div>
                 <div class="col-md-3">
-                    <h5>Quick Links</h5>
+                    <h5><?php echo $lang->get('footer_quick_links'); ?></h5>
                     <ul class="list-unstyled">
-                        <li><a href="index.php" class="text-white">Home</a></li>
-                        <li><a href="#about" class="text-white">About</a></li>
-                        <li><a href="#floor-plans" class="text-white">Floor Plans</a></li>
-                        <li><a href="contact.html" class="text-white">Contact</a></li>
+                        <li><a href="index.php" class="text-white"><?php echo $lang->get('nav_home'); ?></a></li>
+                        <li><a href="#about" class="text-white"><?php echo $lang->get('nav_about'); ?></a></li>
+                        <li><a href="#floor-plans" class="text-white"><?php echo $lang->get('nav_floor_plans'); ?></a></li>
+                        <li><a href="contact.php" class="text-white"><?php echo $lang->get('nav_contact'); ?></a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
-                    <h5>Connect</h5>
+                    <h5><?php echo $lang->get('footer_connect'); ?></h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-white">Facebook</a></li>
-                        <li><a href="#" class="text-white">Twitter</a></li>
-                        <li><a href="#" class="text-white">Instagram</a></li>
-                        <li><a href="#" class="text-white">WeChat</a></li>
+                        <li><a href="#" class="text-white"><?php echo $lang->get('social_facebook'); ?></a></li>
+                        <li><a href="#" class="text-white"><?php echo $lang->get('social_twitter'); ?></a></li>
+                        <li><a href="#" class="text-white"><?php echo $lang->get('social_instagram'); ?></a></li>
+                        <li><a href="#" class="text-white"><?php echo $lang->get('social_wechat'); ?></a></li>
                     </ul>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-12 text-center">
-                    <p class="mb-0">&copy; 2025 Wenzhou-Kean University. All rights reserved.</p>
+                    <p class="mb-0"><?php echo $lang->get('footer_copyright'); ?></p>
                 </div>
             </div>
         </div>
