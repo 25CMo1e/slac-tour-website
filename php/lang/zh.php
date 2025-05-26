@@ -97,7 +97,7 @@ return [
 
     // Contact Section
     'contact_description' => '有问题或想预订场地？请联系我们！',
-    'contact_button' => '联系我们'
+    'contact_button' => '联系我们',
     'nav_logout' => '退出',
 
     // Home Page
