@@ -7,7 +7,7 @@
  */
 $severname = "localhost";
 $username = "root";
-$password = "2004";
+$password = "root";
 $dbname = "slac";
 
 // 创建数据库连接
@@ -64,7 +64,24 @@ CREATE TABLE rooms (
     capacity INT DEFAULT 4,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+还需要插入表格信息
+-- 插入会议室（Meeting 类型）
+INSERT INTO rooms (name, type, capacity) VALUES
+('SLAC 303', 'Meeting', 10),
+('SLAC 401', 'Meeting', 8),
+('SLAC 404', 'Meeting', 12),
+('SLAC 501', 'Meeting', 15),
+('SLAC 601', 'Meeting', 20);
 
+-- 插入讨论室（Discussion 类型）
+INSERT INTO rooms (name, type, capacity) VALUES
+('SLAC 402', 'Discussion', 4),
+('SLAC 403', 'Discussion', 4),
+('SLAC 502', 'Discussion', 6),
+('SLAC 503', 'Discussion', 6),
+('SLAC 604A', 'Discussion', 4),
+('SLAC 604B', 'Discussion', 4),
+('SLAC 604C', 'Discussion', 4);
 
 CREATE TABLE reservations (
     id INT AUTO_INCREMENT PRIMARY KEY,
