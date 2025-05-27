@@ -7,7 +7,7 @@
  */
 $severname = "localhost";
 $username = "root";
-$password = "";
+$password = "2004";
 $dbname = "slac";
 
 // 创建数据库连接

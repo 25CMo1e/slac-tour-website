@@ -80,21 +80,51 @@
                 <div class="col-md-3">
                     <!-- Floor Selection Sidebar -->
                     <div class="list-group floor-selector">
-                        <!-- V2FuZyBLYWl4aW4gLSAxMzA2MzE4 -->
-                        <button type="button" class="list-group-item list-group-item-action" data-floor="0">Basement
-                            Floor</button>
-                        <button type="button" class="list-group-item list-group-item-action active" data-floor="1">First
-                            Floor</button>
+                        <button type="button" class="list-group-item list-group-item-action" data-floor="0">Basement Floor</button>
+                        <div class="sub-floor-buttons" style="display: none;">
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="B101">B101</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="B102">B102</button>
+                
+                        </div>
+                        <button type="button" class="list-group-item list-group-item-action active" data-floor="1">First Floor</button>
                         <button type="button" class="list-group-item list-group-item-action" data-floor="2">Second
                             Floor</button>
                         <button type="button" class="list-group-item list-group-item-action" data-floor="3">Third
                             Floor</button>
+                        <div class="sub-floor-buttons-third" style="display: none;">
+                        
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="303">303</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="304">304</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="305">305</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="306">306</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="307">307</button>
+                        </div>
                         <button type="button" class="list-group-item list-group-item-action" data-floor="4">Fourth
                             Floor</button>
+                        <div class="sub-floor-buttons-fourth" style="display: none;">
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="401">401</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="402">402</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="403">403</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="404">404</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="405">405</button>
+
+                        </div>
                         <button type="button" class="list-group-item list-group-item-action" data-floor="5">Fifth
                             Floor</button>
+                        <div class="sub-floor-buttons-fifth" style="display: none;">
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="501">501</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="502">502</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="503">503</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="504">504</button>
+                        </div>
                         <button type="button" class="list-group-item list-group-item-action" data-floor="6">Sixth
                             Floor</button>
+                        <div class="sub-floor-buttons-sixth" style="display: none;">
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="601">601</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="602">602</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="605">605</button>
+                            <button type="button" class="list-group-item list-group-item-action sub-floor" data-sub-floor="607">607</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -111,7 +141,16 @@
                                     data-location="basement-location-1">
                             </map>
                         </div>
-                        <!-- V2FuZyBLYWl4aW4gLSAxMzA2MzE4 -->
+
+                        <!-- Sub-floor images -->
+                        <div id="sub-floor-B101" class="floor-plan">
+                            <img src="img/floor-plans/b101.jpg" alt="B101 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-B102" class="floor-plan">
+                            <img src="img/floor-plans/b102.jpg" alt="B102 Floor Plan" class="img-fluid">
+                        </div>
+                       
+
                         <!-- First Floor -->
                         <div id="floor-1" class="floor-plan active">
                             <img src="img/floor-plans/1f_1.png" alt="First Floor Plan" class="img-fluid"
@@ -146,6 +185,24 @@
                             </map>
                         </div>
 
+                        <!-- Third Floor Sub-floor images -->
+                        
+                        <div id="sub-floor-303" class="floor-plan">
+                            <img src="img/floor-plans/303.jpg" alt="303 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-304" class="floor-plan">
+                            <img src="img/floor-plans/304.jpg" alt="304 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-305" class="floor-plan">
+                            <img src="img/floor-plans/305.jpg" alt="305 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-306" class="floor-plan">
+                            <img src="img/floor-plans/306.jpg" alt="306 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-307" class="floor-plan">
+                            <img src="img/floor-plans/307.jpg" alt="307 Floor Plan" class="img-fluid">
+                        </div>
+
                         <!-- Fourth Floor -->
                         <div id="floor-4" class="floor-plan">
                             <img src="img/floor-plans/4f_5.png" alt="Fourth Floor Plan" class="img-fluid"
@@ -154,6 +211,27 @@
                                 <area shape="rect" coords="50,50,150,150" alt="Fourth Location 1" href="#"
                                     data-toggle="modal" data-target="#locationModal" data-location="fourth-location-1">
                             </map>
+                        </div>
+
+                        <!-- Fourth Floor Sub-floor images -->
+                        <div id="sub-floor-401" class="floor-plan">
+                            <img src="img/floor-plans/401.jpg" alt="401 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-402" class="floor-plan">
+                            <img src="img/floor-plans/402.jpg" alt="402 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-403" class="floor-plan">
+                            <img src="img/floor-plans/403.jpg" alt="403 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-404" class="floor-plan">
+                            <img src="img/floor-plans/404.jpg" alt="404 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-405" class="floor-plan">
+                            <img src="img/floor-plans/405.jpg" alt="405 Floor Plan" class="img-fluid">
+                        </div>
+                        
+                        <div id="sub-floor-412" class="floor-plan">
+                            <img src="img/floor-plans/412.jpg" alt="412 Floor Plan" class="img-fluid">
                         </div>
 
                         <!-- Fifth Floor -->
@@ -166,6 +244,29 @@
                             </map>
                         </div>
 
+                        <!-- Fifth Floor Sub-floor images -->
+                        <div id="sub-floor-501" class="floor-plan">
+                            <img src="img/floor-plans/501.jpg" alt="501 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-502" class="floor-plan">
+                            <img src="img/floor-plans/502.jpg" alt="502 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-503" class="floor-plan">
+                            <img src="img/floor-plans/503.jpg" alt="503 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-504" class="floor-plan">
+                            <img src="img/floor-plans/504.jpg" alt="504 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-505" class="floor-plan">
+                            <img src="img/floor-plans/505.jpg" alt="505 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-506" class="floor-plan">
+                            <img src="img/floor-plans/506.jpg" alt="506 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-507" class="floor-plan">
+                            <img src="img/floor-plans/507.jpg" alt="507 Floor Plan" class="img-fluid">
+                        </div>
+
                         <!-- Sixth Floor -->
                         <div id="floor-6" class="floor-plan">
                             <img src="img/floor-plans/6f_1.png" alt="Sixth Floor Plan" class="img-fluid"
@@ -174,6 +275,20 @@
                                 <area shape="rect" coords="50,50,150,150" alt="Sixth Location 1" href="#"
                                     data-toggle="modal" data-target="#locationModal" data-location="sixth-location-1">
                             </map>
+                        </div>
+
+                        <!-- Sixth Floor Sub-floor images -->
+                        <div id="sub-floor-601" class="floor-plan">
+                            <img src="img/floor-plans/601.jpg" alt="601 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-602" class="floor-plan">
+                            <img src="img/floor-plans/602.jpg" alt="602 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-605" class="floor-plan">
+                            <img src="img/floor-plans/605.jpg" alt="605 Floor Plan" class="img-fluid">
+                        </div>
+                        <div id="sub-floor-607" class="floor-plan">
+                            <img src="img/floor-plans/607.jpg" alt="607 Floor Plan" class="img-fluid">
                         </div>
                     </div>
                 </div>
