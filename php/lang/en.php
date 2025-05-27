@@ -98,4 +98,34 @@ return [
     // Contact Section
     'contact_description' => 'Have questions or want to book a space? Contact us!',
     'contact_button' => 'Contact Us'
+
+    // Booking
+    'book_room' => 'Book Rooms',
+    'book_now' => 'Book Now',
+    'capacity' => 'Capacity',
+    'book_room_title' => 'Book %s Room',
+    'event_title' => 'Event Title',
+    'start_time' => 'Start Time',
+    'end_time' => 'End Time',
+    'confirm_booking' => 'Confirm Booking',
+    'time_conflict' => 'Time slot already booked',
+    'booking_failed' => 'Booking failed, please try again',
+    'my_reservations' => 'My Reservations',
+    'reservation_cancelled' => 'Reservation cancelled successfully',
+    'cancel_failed' => 'Failed to cancel reservation',
+    'no_reservations' => 'You have no reservations yet',
+    'room' => 'Room',
+    'type' => 'Type',
+    'title' => 'Title',
+    'time' => 'Time',
+    'status' => 'Status',
+    'actions' => 'Actions',
+    'active' => 'Active',
+    'cancelled' => 'Cancelled',
+    'completed' => 'Completed',
+    'confirm_cancel' => 'Are you sure you want to cancel this reservation?',
+    'cancel' => 'Cancel',
+    'booking_success' => 'Booking created successfully!',
+    'Discussion' => 'Discussion',
+    'Meeting' => 'Meeting'
 ];

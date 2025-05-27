@@ -38,6 +38,13 @@ $lang = Language::getInstance();
                         <a class="nav-link" href="contact.html"><?php echo $lang->get('nav_contact'); ?></a>
                     </li>
                     <?php include __DIR__ . '/php/components/language_selector.php'; ?>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="rooms.php">
+                            <?php echo $lang->get('book_room'); ?>
+                        </a>
+                    </li>
+                    
                     <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) : ?>
                         <li class="nav-item">
                             <span class="navbar-text text-white mr-2">Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?></span>
