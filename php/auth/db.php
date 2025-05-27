@@ -53,3 +53,31 @@ CREATE TABLE feedback (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE SET NULL
 );
 */
+
+/* 预约系统需要添加的表
+
+CREATE TABLE rooms (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    type ENUM('Discussion', 'Meeting') NOT NULL,
+    image_url VARCHAR(255),
+    capacity INT DEFAULT 4,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE reservations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    room_id INT NOT NULL,
+    user_id INT NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    start_time DATETIME NOT NULL,
+    end_time DATETIME NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('active', 'cancelled') DEFAULT 'active',
+    FOREIGN KEY (room_id) REFERENCES rooms(id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+*/
+
