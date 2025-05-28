@@ -1,9 +1,6 @@
 <?php
 require_once __DIR__ . '/../auth/check_login_status.php';
-require_once __DIR__ . '/../lang/Language.php';
-require_once __DIR__ . '/../db.php';
-
-$lang = Language::getInstance();
+require_once __DIR__ . '/../auth/db.php';
 
 // 获取用户预约
 $reservations = $conn->query("
@@ -23,18 +20,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cancel_id'])) {
     $stmt->execute();
     
     if ($stmt->affected_rows > 0) {
-        $success_msg = $lang->get('reservation_cancelled');
+        $success_msg = 'Reservation cancelled successfully';
     } else {
-        $error_msg = $lang->get('cancel_failed');
+        $error_msg = 'Failed to cancel reservation';
     }
 }
 ?>
 
 <div class="container mt-4">
-    <h3><?= $lang->get('my_reservations') ?></h3>
+    <h3>My Reservations</h3>
     
     <?php if (isset($_GET['success'])): ?>
-    <div class="alert alert-success"><?= $lang->get('booking_success') ?></div>
+    <div class="alert alert-success">Booking created successfully</div>
     <?php endif; ?>
     
     <?php if (isset($success_msg)): ?>
@@ -44,18 +41,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cancel_id'])) {
     <?php endif; ?>
     
     <?php if (empty($reservations)): ?>
-    <div class="alert alert-info"><?= $lang->get('no_reservations') ?></div>
+    <div class="alert alert-info">You have no reservations</div>
     <?php else: ?>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th><?= $lang->get('room') ?></th>
-                    <th><?= $lang->get('type') ?></th>
-                    <th><?= $lang->get('title') ?></th>
-                    <th><?= $lang->get('time') ?></th>
-                    <th><?= $lang->get('status') ?></th>
-                    <th><?= $lang->get('actions') ?></th>
+                    <th>Room</th>
+                    <th>Type</th>
+                    <th>Title</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -74,11 +71,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cancel_id'])) {
                     </td>
                     <td>
                         <?php if ($res['status'] == 'active' && strtotime($res['start_time']) > time()): ?>
-                            <span class="badge badge-success"><?= $lang->get('active') ?></span>
+                            <span class="badge badge-success">Active</span>
                         <?php elseif ($res['status'] == 'cancelled'): ?>
-                            <span class="badge badge-secondary"><?= $lang->get('cancelled') ?></span>
+                            <span class="badge badge-secondary">Cancelled</span>
                         <?php else: ?>
-                            <span class="badge badge-info"><?= $lang->get('completed') ?></span>
+                            <span class="badge badge-info">Completed</span>
                         <?php endif; ?>
                     </td>
                     <td>
@@ -86,8 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cancel_id'])) {
                         <form method="post" style="display:inline;">
                             <input type="hidden" name="cancel_id" value="<?= $res['id'] ?>">
                             <button type="submit" class="btn btn-sm btn-danger"
-                                onclick="return confirm('<?= $lang->get('confirm_cancel') ?>')">
-                                <i class="fas fa-times"></i> <?= $lang->get('cancel') ?>
+                                onclick="return confirm('Are you sure you want to cancel this reservation?')">
+                                <i class="fas fa-times"></i> Cancel
                             </button>
                         </form>
                         <?php endif; ?>
@@ -99,4 +96,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['cancel_id'])) {
     </div>
     <?php endif; ?>
 </div>
-

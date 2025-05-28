@@ -1,17 +1,25 @@
 <?php
-require_once __DIR__ . '/../auth/check_login_status.php';
-require_once __DIR__ . '/../auth/db.php';
+define('REQUIRE_SESSION', true);
+require_once __DIR__.'/../auth/db.php';
 
+// Start session and check login status
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true || !isset($_SESSION['user_id'])) {
+    header("Location: /slac-tour-website-main/php/auth/login.php");
+    exit();
+}
 
+// Get user ID
+$user_id = (int)$_SESSION['user_id'];
 
-// 验证房间ID
+// Validate room ID
 $room_id = isset($_GET['room_id']) ? (int)$_GET['room_id'] : 0;
 if ($room_id <= 0) {
     header("Location: rooms.php");
     exit();
 }
 
-// 使用预处理语句获取房间信息
+// Get room information
 $stmt = $conn->prepare("SELECT * FROM rooms WHERE id = ?");
 $stmt->bind_param("i", $room_id);
 $stmt->execute();
@@ -24,20 +32,17 @@ if (!$room) {
 }
 
 $error = null;
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // 验证输入
     $title = isset($_POST['title']) ? trim($_POST['title']) : '';
     $start_time = isset($_POST['start_time']) ? $_POST['start_time'] : '';
     $end_time = isset($_POST['end_time']) ? $_POST['end_time'] : '';
     
-    // 基本验证
     if (empty($title) || empty($start_time) || empty($end_time)) {
         $error = "Please fill in all fields";
     } elseif (strtotime($start_time) >= strtotime($end_time)) {
         $error = "End time must be after start time";
     } else {
-        // 检查时间冲突
+        // Check for time slot conflict
         $stmt = $conn->prepare("SELECT id FROM reservations 
                               WHERE room_id = ? 
                               AND status = 'active'
@@ -51,20 +56,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->close();
         
         if ($conflict > 0) {
-            $error = "The selected time slot is already booked";
+            $error = "This time slot is already booked";
         } else {
-            // 创建预约
+            // Create reservation using user_id
             $stmt = $conn->prepare("INSERT INTO reservations 
                                   (room_id, user_id, title, start_time, end_time, status) 
                                   VALUES (?, ?, ?, ?, ?, 'active')");
-            $stmt->bind_param("iisss", $room_id, $_SESSION['user_id'], $title, $start_time, $end_time);
-            $stmt->execute();
+            $stmt->bind_param("iisss", $room_id, $user_id, $title, $start_time, $end_time);
             
-            if ($stmt->affected_rows > 0) {
-                header("Location: my_reservations.php?success=1");
-                exit();
+            if ($stmt->execute()) {
+                if ($stmt->affected_rows > 0) {
+                    header("Location: my_reservations.php?success=1");
+                    exit();
+                } else {
+                    $error = "Booking failed, please try again";
+                }
             } else {
-                $error = "Booking failed. Please try again.";
+                $error = "Database error, please try again";
+                error_log("Database error: " . $stmt->error);
             }
             $stmt->close();
         }
@@ -80,13 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Book Meeting Room</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- FullCalendar CSS -->
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
     <style>
         body { padding: 20px; }
         #calendar { margin-top: 20px; }
-        
-        /* 时间冲突提示 */
         .fc-highlight {
             background-color: #ffcccc !important;
         }
@@ -119,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="form-group mb-3">
                         <label>End Time</label>
                         <input type="datetime-local" name="end_time" class="form-control" required 
-                               min="<?= date('Y-m-d\TH:i') ?>"
+                               min="<?= date('Y-m-d\TH:i') ?>" 
                                value="<?= isset($_POST['end_time']) ? htmlspecialchars($_POST['end_time']) : '' ?>">
                     </div>
                     
@@ -134,7 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
-    <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
     <script>
@@ -151,7 +156,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             selectable: true,
             selectOverlap: false,
             select: function(info) {
-                // 自动填充选择的时间
                 document.querySelector('input[name="start_time"]').value = info.startStr.substring(0, 16);
                 document.querySelector('input[name="end_time"]').value = info.endStr.substring(0, 16);
             },
@@ -161,7 +165,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             slotMinTime: "08:00:00",
             slotMaxTime: "22:00:00",
             selectAllow: function(selectInfo) {
-                // 确保选择的时间在当前时间之后
                 return selectInfo.start > new Date();
             },
             eventColor: '#378006',
@@ -173,7 +176,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         });
         calendar.render();
         
-        // 表单提交前验证
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
             var start = document.querySelector('input[name="start_time"]').value;
             var end = document.querySelector('input[name="end_time"]').value;
