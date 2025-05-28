@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $user_id;
+                            $_SESSION["user_id"] = $user_id;
                             $_SESSION["username"] = $username;
 
                             // Redirect user to welcome page
@@ -98,41 +98,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 0 auto;
             padding: 2rem;
         }
-
-        .form-container {
-            position: relative;
-            overflow: hidden;
-            min-height: 600px;
-        }
-
-        .login-form,
-        .register-form {
-            transition: all 0.3s ease;
-            width: 100%;
-            position: relative;
-        }
-
-        .register-form {
-            position: absolute;
-            top: 0;
-            left: 100%;
-            width: 100%;
-            height: auto;
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .show-register .login-form {
-            transform: translateX(-100%);
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .show-register .register-form {
-            transform: translateX(-100%);
-            opacity: 1;
-            visibility: visible;
-        }
     </style>
 </head>
 
@@ -140,23 +105,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="../../index.php">SLAC</a>
+            <a class="navbar-brand" href="../../index.html">SLAC</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../../index.php">Home</a>
+                        <a class="nav-link" href="../../index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../index.php#about">About</a>
+                        <a class="nav-link" href="../../index.html#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../index.php#facilities">Facilities</a>
+                        <a class="nav-link" href="../../index.html#facilities">Facilities</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../contact.php">Contact</a>
+                        <a class="nav-link" href="../../contact.html">Contact</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link btn btn-outline-light btn-sm ml-2" href="#">Login</a>
@@ -197,35 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                                     </div>
-                                    <p class="text-center">Don't have an account? <a href="register.php" class="toggle-form">Sign up</a></p>
-                                </form>
-                            </div>
-
-                            <!-- Register Form -->
-                            <div class="register-form">
-                                <h2 class="text-center mb-4">Create Account</h2>
-                                <p class="text-center">Fill in the form to create your account</p>
-                                <form action="register.php" method="post">
-                                    <div class="form-group">
-                                        <label>Username</label>
-                                        <input type="text" name="username" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" name="email" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" name="password" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Confirm Password</label>
-                                        <input type="password" name="confirm_password" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block">Register</button>
-                                    </div>
-                                    <p class="text-center">Already have an account? <a href="login.php" class="toggle-form">Login</a></p>
+                                    <p class="text-center">Don't have an account? <a href="register.php" class="btn btn-link">Sign up</a></p>
                                 </form>
                             </div>
                         </div>
@@ -234,7 +171,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container">
@@ -246,10 +182,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-md-3">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="../../index.php" class="text-white">Home</a></li>
-                        <li><a href="../../index.php#about" class="text-white">About</a></li>
-                        <li><a href="../../index.php#floor-plans" class="text-white">Floor Plans</a></li>
-                        <li><a href="../../contact.php" class="text-white">Contact</a></li>
+                        <li><a href="../../index.html" class="text-white">Home</a></li>
+                        <li><a href="../../index.html#about" class="text-white">About</a></li>
+                        <li><a href="../../index.html#floor-plans" class="text-white">Floor Plans</a></li>
+                        <li><a href="../../contact.html" class="text-white">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
@@ -270,20 +206,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </footer>
 
-    <!-- JavaScript Dependencies -->
+    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    
+    <!-- Main JavaScript -->
     <script src="../../js/main.js"></script>
-    <script>
-        // Toggle between login and register forms
-        $(document).ready(function() {
-            $('.toggle-form').click(function(e) {
-                e.preventDefault();
-                $('.form-container').toggleClass('show-register');
-            });
-        });
-    </script>
 </body>
 </html>
-
